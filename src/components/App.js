@@ -1,18 +1,20 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-import { BrowserRouter, Route } from 'react-router-dom'
-import Navigation from './common/Navigation'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import Main from './Main'
+import Login from './login/Login'
+import Delete from './Delete'
+import Delete2 from './Delete2'
 
-const isLogedin = true
 const App = () => {
-    const navigation = <Navigation />
     return (
         <BrowserRouter>
-            <div className="container-fluid login">
-                {isLogedin ? navigation:''}
-                <Main />
-            </div>
+            <Switch>
+                <Route exact path='/' component={Login} />
+                <Main>
+                    <Route path='/delete' component={Delete} />
+                    <Route path='/delete2' component={Delete2} />
+                </Main>
+            </Switch>
         </BrowserRouter >
     )
 }

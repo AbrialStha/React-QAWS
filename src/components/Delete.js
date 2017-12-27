@@ -3,13 +3,13 @@ import React, { Component } from 'react'
 class Delete extends Component {
     render() {
         return (
-            <div class="card">
-                <div class="card-body">
-                    <div class="card-header card-header-icon">
-                        <i class="material-icons">directions_run</i>
+            <div className="card">
+                <div className="card-body">
+                    <div className="card-header card-header-icon">
+                        <i className="material-icons">directions_run</i>
                     </div>
-                    <h4 class="card-title">Task In Hand</h4>
-                    <table class="table">
+                    <h4 className="card-title">Task In Hand</h4>
+                    <table className="table">
                         <thead>
                             <tr>
                                 <th>Title</th>
@@ -26,22 +26,22 @@ class Delete extends Component {
                                 <td>17 Dec, 2017</td>
                                 <td>Karishma Shakya</td>
                                 <td>
-                                    <span class="badge badge-danger">High</span>
+                                    <span className="badge badge-danger">High</span>
                                 </td>
-                                <td class="text-success">
+                                <td className="text-success">
                                     Done
-                                <div class="btn-group pull-xs-right">
-                                        <button class="btn bmd-btn-icon dropdown-toggle" type="button" id="mw2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="fa fa-angle-double-down"></i>
+                                <div className="btn-group pull-xs-right">
+                                        <button className="btn bmd-btn-icon dropdown-toggle" type="button" id="mw2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i className="fa fa-angle-double-down"></i>
                                         </button>
-                                        <div class="dropdown-menu" aria-labelledby="mw2">
-                                            <button class="dropdown-item" type="button">In Progress</button>
-                                            <button class="dropdown-item" type="button">Halted</button>
+                                        <div className="dropdown-menu" aria-labelledby="mw2">
+                                            <button className="dropdown-item" type="button">In Progress</button>
+                                            <button className="dropdown-item" type="button">Halted</button>
                                         </div>
                                     </div>
                                 </td>
                                 <td>
-                                    <button class="btn btn-raised btn-info">
+                                    <button className="btn btn-raised btn-info">
                                         Resolve
                                 </button>
                                 </td>
@@ -51,22 +51,22 @@ class Delete extends Component {
                                 <td>17 Dec, 2017</td>
                                 <td>Karishma Shakya</td>
                                 <td>
-                                    <span class="badge badge-primary">Normal</span>
+                                    <span className="badge badge-primary">Normal</span>
                                 </td>
-                                <td class="text-warning">
+                                <td className="text-warning">
                                     In Progress
-                                <div class="btn-group pull-xs-right">
-                                        <button class="btn bmd-btn-icon dropdown-toggle" type="button" id="mw2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="fa fa-angle-double-down"></i>
+                                <div className="btn-group pull-xs-right">
+                                        <button className="btn bmd-btn-icon dropdown-toggle" type="button" id="mw2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i className="fa fa-angle-double-down"></i>
                                         </button>
-                                        <div class="dropdown-menu" aria-labelledby="mw2">
-                                            <button class="dropdown-item" type="button">Done</button>
-                                            <button class="dropdown-item" type="button">Halted</button>
+                                        <div className="dropdown-menu" aria-labelledby="mw2">
+                                            <button className="dropdown-item" type="button">Done</button>
+                                            <button className="dropdown-item" type="button">Halted</button>
                                         </div>
                                     </div>
                                 </td>
                                 <td>
-                                    <button class="btn btn-raised btn-info">
+                                    <button className="btn btn-raised btn-info">
                                         Resolve
                                 </button>
                                 </td>
@@ -76,22 +76,22 @@ class Delete extends Component {
                                 <td>17 Dec, 2017</td>
                                 <td>Karishma Shakya</td>
                                 <td>
-                                    <span class="badge badge-primary">Normal</span>
+                                    <span className="badge badge-primary">Normal</span>
                                 </td>
-                                <td class="text-danger">
+                                <td className="text-danger">
                                     Halted
-                                <div class="btn-group pull-xs-right">
-                                        <button class="btn bmd-btn-icon dropdown-toggle" type="button" id="mw2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="fa fa-angle-double-down"></i>
+                                <div className="btn-group pull-xs-right">
+                                        <button className="btn bmd-btn-icon dropdown-toggle" type="button" id="mw2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i className="fa fa-angle-double-down"></i>
                                         </button>
-                                        <div class="dropdown-menu" aria-labelledby="mw2">
-                                            <button class="dropdown-item" type="button">In Progress</button>
-                                            <button class="dropdown-item" type="button">Done</button>
+                                        <div className="dropdown-menu" aria-labelledby="mw2">
+                                            <button className="dropdown-item" type="button">In Progress</button>
+                                            <button className="dropdown-item" type="button">Done</button>
                                         </div>
                                     </div>
                                 </td>
                                 <td>
-                                    <button class="btn btn-raised btn-info">
+                                    <button className="btn btn-raised btn-info">
                                         Resolve
                                 </button>
                                 </td>

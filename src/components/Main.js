@@ -1,17 +1,17 @@
-import React from 'react'
-import { Switch, Route } from 'react-router-dom'
-import Login from './login/Login'
-import Delete from './Delete'
+import React, { Component } from 'react'
+import Navigation from './common/Navigation'
 
-const Main = () => {
-    return (
-        <div className="area">
-            <Switch>
-                <Route exact path='/login' component={Login} />
-                <Route exact path='/' component={Delete} />
-            </Switch>
-        </div>
-    )
+class Main extends Component {
+    render() {
+        return (
+            <div>
+                <div className="area">
+                    {this.props.children}
+                </div>
+                <Navigation />
+            </div>
+        )
+    }
 }
 
 export default Main
