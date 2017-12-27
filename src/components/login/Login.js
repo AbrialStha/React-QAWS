@@ -3,8 +3,13 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import LoginForm from './LoginForm'
 import { loginRequest } from '../../actions/AuthActions'
+import { withRouter } from 'react-router-dom'
 
 class Login extends Component {
+    componentWillMount() {
+        if (this.props.isAuthenticated)
+            this.props.history.push('/delete')
+    }
     render() {
         return (
             <div className="container-fluid login">
@@ -17,7 +22,14 @@ class Login extends Component {
 }
 
 Login.propTypes = {
-    loginRequest: PropTypes.func.isRequired
+    loginRequest: PropTypes.func.isRequired,
+    isAuthenticated: PropTypes.bool.isRequired
 }
 
-export default connect(null, { loginRequest })(Login)
+function mapStateToProps(state) {
+    return {
+        isAuthenticated: state.auth.isAuthenticated
+    }
+}
+
+export default withRouter(connect(mapStateToProps, { loginRequest })(Login))

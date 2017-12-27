@@ -5,6 +5,7 @@ import Main from './Main'
 import Login from './login/Login'
 import Delete from './Delete'
 import Delete2 from './Delete2'
+import requireAuth from '../utils/requireAuth'
 
 const App = ({ store }) => {
     return (
@@ -13,8 +14,8 @@ const App = ({ store }) => {
                 <Switch>
                     <Route exact path='/' component={Login} />
                     <Main>
-                        <Route path='/delete' component={Delete} />
-                        <Route path='/delete2' component={Delete2} />
+                        <Route path='/delete' component={requireAuth(Delete)} />
+                        <Route path='/delete2' component={requireAuth(Delete2)} />
                     </Main>
                 </Switch>
             </BrowserRouter >

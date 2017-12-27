@@ -1,8 +1,8 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom'
 import './Assets/style.css'
-import App from './components/App';
-import registerServiceWorker from './registerServiceWorker';
+import App from './components/App'
+import registerServiceWorker from './registerServiceWorker'
 import { createStore, applyMiddleware, compose } from 'redux'
 import thunk from 'redux-thunk'
 import rootReducers from './reducers/rootReducers'
