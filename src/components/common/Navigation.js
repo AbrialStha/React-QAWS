@@ -1,7 +1,20 @@
 import React, { Component } from 'react'
 import pic from '../../Assets/profile_pic.png'
+import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
+import { logoutRequest } from '../../actions/AuthActions'
 
 class Navigation extends Component {
+    constructor(props) {
+        super(props)
+        this.logoutRequest = this.logoutRequest.bind(this)
+    }
+
+    logoutRequest = (event) => {
+        event.preventDefault()
+        this.props.logoutRequest()
+    }
+
     render() {
         return (
             <nav className="main-menu">
@@ -84,11 +97,11 @@ class Navigation extends Component {
                         </a>
                     </li>
                     <li>
-                        <a href="">
+                        <a href="" onClick={this.logoutRequest}>
                             <i className="fa fa-power-off fa-2x"></i>
                             <span className="nav-text">
                                 Logout
-                    </span>
+                            </span>
                         </a>
                     </li>
                 </ul>
@@ -97,4 +110,8 @@ class Navigation extends Component {
     }
 }
 
-export default Navigation
+Navigation.propTypes = {
+    logoutRequest: PropTypes.func.isRequired
+}
+
+export default connect(null, { logoutRequest })(Navigation)

@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import { withRouter } from 'react-router-dom'
 
 class LoginForm extends Component {
     constructor(props) {
@@ -6,7 +8,8 @@ class LoginForm extends Component {
         this.state = {
             username: '',
             password: '',
-            isLoading: false
+            isLoading: false,
+            error: ''
         }
         this.onChange = this.onChange.bind(this)
         this.onSubmit = this.onSubmit.bind(this)
@@ -19,7 +22,21 @@ class LoginForm extends Component {
     onSubmit = (event) => {
         event.preventDefault()
         this.setState({ isLoading: true })
-        console.log(this.state);
+        this.props.loginRequest(this.state).then(
+            (res) => {
+                this.props.history.push('/delete')
+            },
+            (err) => {
+                let data
+                try {
+                    data = err.response.data
+                    this.setState({ error: data.msg })
+                } catch (error) {
+                    console.log(error)
+                }
+                this.setState({ isLoading: false })
+            }
+        )
     }
 
     render() {
@@ -41,7 +58,8 @@ class LoginForm extends Component {
                     </div>
                 </div>
                 <p className="category text-center">
-                    Or Be Classical
+                    {this.state.error===''? 'Or Be Classical' : ''}
+                    <span className="text-danger">{this.state.error}</span>
                 </p>
                 <div className="card-body">
                     <div className="card-content">
@@ -95,4 +113,9 @@ class LoginForm extends Component {
     }
 }
 
-export default LoginForm
+LoginForm.propTypes = {
+    loginRequest: PropTypes.func.isRequired,
+    history: PropTypes.object.isRequired
+}
+
+export default withRouter(LoginForm)
