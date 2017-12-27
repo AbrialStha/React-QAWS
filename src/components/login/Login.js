@@ -3,9 +3,11 @@ import LoginForm from './LoginForm'
 
 class Login extends Component {
     render() {
-        return(
+        return (
             <div className="container-fluid login">
-                <LoginForm/>
+                <div className="card login-container">
+                    <LoginForm />
+                </div>
             </div>
         )
     }

@@ -1,9 +1,31 @@
 import React, { Component } from 'react'
 
 class LoginForm extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            username: '',
+            password: '',
+            isLoading: false
+        }
+        this.onChange = this.onChange.bind(this)
+        this.onSubmit = this.onSubmit.bind(this)
+    }
+
+    onChange = (event) => {
+        this.setState({ [event.target.name]: event.target.value })
+    }
+
+    onSubmit = (event) => {
+        event.preventDefault()
+        this.setState({ isLoading: true })
+        console.log(this.state);
+    }
+
     render() {
+        const { username, password, isLoading } = this.state
         return (
-            <div className="card login-container">
+            <form onSubmit={this.onSubmit}>
                 <div className="card-header text-center">
                     <h4 className="card-title">Login</h4>
                     <div className="social-line">
@@ -29,7 +51,14 @@ class LoginForm extends Component {
                                 <label className="bmd-label-floating">
                                     Email address
                                 </label>
-                                <input type="email" className="form-control" id="exampleInputEmail1" />
+                                <input
+                                    value={username}
+                                    onChange={this.onChange}
+                                    type="email"
+                                    className="form-control"
+                                    name="username"
+                                    required
+                                />
                                 <span className="bmd-help">Enter your fusemachines account</span>
                             </div>
                             <div className="clear"></div>
@@ -40,7 +69,13 @@ class LoginForm extends Component {
                                 <label className="bmd-label-floating">
                                     Password
                                 </label>
-                                <input type="password" className="form-control" id="password" />
+                                <input
+                                    value={password}
+                                    onChange={this.onChange}
+                                    type="password"
+                                    className="form-control"
+                                    name="password"
+                                />
                                 <span className="bmd-help">Enter your password</span>
                             </div>
                             <div className="clear"></div>
@@ -48,11 +83,14 @@ class LoginForm extends Component {
                     </div>
                 </div>
                 <div className="footer text-center">
-                    <button type="submit" className="btn btn-mycolor btn-simple btn-wd btn-lg">
-                        Login
+                    <button
+                        type="submit"
+                        className="btn btn-mycolor btn-simple btn-wd btn-lg"
+                        disabled={isLoading}>
+                        {!isLoading ? 'LogIn' : 'Processing...'}
                     </button>
                 </div>
-            </div>
+            </form>
         )
     }
 }
