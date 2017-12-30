@@ -7,7 +7,9 @@ import { createStore, applyMiddleware, compose } from 'redux'
 import thunk from 'redux-thunk'
 import rootReducers from './reducers/rootReducers'
 import setAuthorizationToken from './utils/setAuthorizationToken'
-import { setCurrentUser } from './actions/AuthActions'
+import { setCurrentUser, getSessionUser } from './actions/AuthActions'
+import axios from 'axios'
+import config from './config'
 
 let store = createStore(
     rootReducers,
@@ -17,15 +19,9 @@ let store = createStore(
     )
 )
 
-if (localStorage.Authorization) {
+if (localStorage.Authorization && localStorage.user) {
     setAuthorizationToken(localStorage.Authorization)
-    if (localStorage.name && localStorage.email) {
-        const userObj = {
-            name: localStorage.name,
-            email: localStorage.email
-        }
-        store.dispatch(setCurrentUser(userObj))
-    }
+    store.dispatch(setCurrentUser(JSON.parse(localStorage.user)))
 }
 
 ReactDOM.render(<App store={store} />, document.getElementById('root'));

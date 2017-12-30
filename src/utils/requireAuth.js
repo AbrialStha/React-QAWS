@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
+import { getSessionUser } from '../actions/AuthActions'
 
 export default function (ComposedCompoent) {
 
@@ -15,7 +16,7 @@ export default function (ComposedCompoent) {
         }
 
         componentWillUpdate(nextProps) {
-            if(!nextProps.isAuthenticated)
+            if (!nextProps.isAuthenticated)
                 this.props.history.push('/')
         }
 

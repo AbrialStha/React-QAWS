@@ -8,11 +8,20 @@ export function loginRequest(data) {
     return dispatch => {
         return axios.post(`${config.baseUrl}/login`, data).then(res => {
             const token = res.data.authtoken
-            const userObj = res.data.userObj
             localStorage.setItem('Authorization', token)
-            localStorage.setItem('name', userObj.name)
-            localStorage.setItem('email', userObj.email)
             setAuthorizationToken(token)
+            const userObj = res.data.userObj
+            console.log(userObj)
+            localStorage.setItem('user', JSON.stringify(userObj))
+            dispatch(setCurrentUser(userObj))
+        })
+    }
+}
+
+export function getSessionUser() {
+    return dispatch => {
+        return axios.get(`${config.baseUrl}/session`).then(res => {
+            const userObj = res.data.user
             dispatch(setCurrentUser(userObj))
         })
     }
@@ -20,10 +29,9 @@ export function loginRequest(data) {
 
 export function logoutRequest() {
     return dispatch => {
-        axios.delete('http://localhost:5500/api/v1/logout').then(res => {
+        axios.delete(`${config.baseUrl}/logout`).then(res => {
             localStorage.removeItem('Authorization')
-            localStorage.removeItem('name')
-            localStorage.removeItem('email')
+            localStorage.removeItem('user')
             setAuthorizationToken(false)
             dispatch(setCurrentUser({}))
             console.log(res.data)
