@@ -7,7 +7,7 @@ class Todo extends Component {
                 <div className="card">
                     <div className="card-body">
                         <div className="card-header card-header-icon">
-                            <i class="material-icons">assignment</i>
+                            <i className="material-icons">assignment</i>
                         </div>
                         <h4 className="card-title">To Do</h4>
                         <table className="table">
@@ -20,7 +20,7 @@ class Todo extends Component {
                                 </tr>
                             </thead>
                             <tbody>
-                                
+
                             </tbody>
                         </table>
                     </div>

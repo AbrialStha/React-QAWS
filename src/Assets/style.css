@@ -124,6 +124,12 @@ nav.main-menu li.active>a,
     background-color: #4DB6AC;
 }
 
+.active {
+    color: #fff;
+    background: #4DB6AC;
+    width: 100%;
+}
+
 .area {
     float: left;
     margin-left: 65px;
@@ -155,11 +161,13 @@ table {
 
 
 /* Experiment */
+
 .login {
     width: 100vw;
     height: 100vh;
-    background:#ccc;
+    background: #ccc;
 }
+
 .login-container {
     position: absolute;
     margin: auto;
@@ -187,10 +195,12 @@ table {
 .login-container .card-header .social-line a {
     color: #fff !important;
 }
-.category{
+
+.category {
     font-size: 15px;
 }
-.social-line{
+
+.social-line {
     font-size: 1px;
 }
 
@@ -209,7 +219,7 @@ table {
 }
 
 .align i {
-    margin:0 25px;
+    margin: 0 25px;
     line-height: 95px;
 }
 

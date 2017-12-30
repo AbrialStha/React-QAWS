@@ -2,12 +2,14 @@ import React, { Component } from 'react'
 import pic from '../../Assets/profile_pic.png'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
+import { withRouter, Link } from "react-router-dom"
 import { logoutRequest } from '../../actions/AuthActions'
 
 class Navigation extends Component {
     constructor(props) {
         super(props)
         this.logoutRequest = this.logoutRequest.bind(this)
+        this.isActive = this.isActive.bind(this)
     }
 
     logoutRequest = (event) => {
@@ -15,7 +17,13 @@ class Navigation extends Component {
         this.props.logoutRequest()
     }
 
+    isActive = (path) => {
+        if (this.props.location.pathname === path)
+            return "active"
+    }
+
     render() {
+        console.log(this.props.location)
         return (
             <nav className="main-menu">
                 <ul>
@@ -28,12 +36,12 @@ class Navigation extends Component {
                         </a>
                     </li>
                     <li>
-                        <a href="./index.html">
+                        <Link to="/board" className={this.isActive("/board")}>
                             <i className="fa fa-home fa-2x"></i>
                             <span className="nav-text">
                                 Home
                             </span>
-                        </a>
+                        </Link>
                     </li>
                     <li className="has-subnav">
                         <a href="./run.html">
@@ -114,4 +122,4 @@ Navigation.propTypes = {
     logoutRequest: PropTypes.func.isRequired
 }
 
-export default connect(null, { logoutRequest })(Navigation)
+export default withRouter(connect(null, { logoutRequest })(Navigation))

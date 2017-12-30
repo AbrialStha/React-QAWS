@@ -7,10 +7,10 @@ class Assigned extends Component {
                 <div className="card">
                     <div className="card-body">
                         <div className="card-header card-header-icon">
-                            <i class="material-icons">bookmark</i>
+                            <i className="material-icons">bookmark</i>
                         </div>
                         <h4 className="card-title">Assigned To me</h4>
-                        <table class="table">
+                        <table className="table">
                             <thead>
                                 <tr>
                                     <th>Title</th>
