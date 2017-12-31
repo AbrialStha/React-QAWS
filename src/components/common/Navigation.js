@@ -28,12 +28,12 @@ class Navigation extends Component {
             <nav className="main-menu">
                 <ul>
                     <li>
-                        <a href="">
+                        <Link to="/profile" className={this.isActive("/profile")}>
                             <img src={pic} alt="profile_pic" className="rounded-circle pro_img" />
                             <span className="nav-text">
                                 Profile
                                 </span>
-                        </a>
+                        </Link>
                     </li>
                     <li>
                         <Link to="/board" className={this.isActive("/board")}>
@@ -44,12 +44,12 @@ class Navigation extends Component {
                         </Link>
                     </li>
                     <li className="has-subnav">
-                        <a href="./run.html">
+                        <Link to="/task_in_hand" className={this.isActive("/task_in_hand")}>
                             <i className="fa fa-list fa-2x"></i>
                             <span className="nav-text">
                                 Tasks in hand
-                    </span>
-                        </a>
+                            </span>
+                        </Link>
 
                     </li>
                     <li className="has-subnav">
@@ -61,12 +61,12 @@ class Navigation extends Component {
                         </a>
                     </li>
                     <li className="has-subnav">
-                        <a href="./create.html">
+                        <Link to="/create" className={this.isActive("/create")}>
                             <i className="fa fa-plus fa-2x"></i>
                             <span className="nav-text">
                                 Create task
-                    </span>
-                        </a>
+                            </span>
+                        </Link>
                     </li>
                     <li className="has-subnav">
                         <a href="">

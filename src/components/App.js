@@ -8,6 +8,7 @@ import Delete2 from './Delete2'
 import requireAuth from '../utils/requireAuth'
 import Board from './Board/Board';
 import Create from './Create/Create';
+import Profile from './Profile/Profile';
 
 const App = ({ store }) => {
     return (
@@ -16,6 +17,7 @@ const App = ({ store }) => {
                 <Switch>
                     <Route exact path='/' component={Login} />
                     <Main>
+                        <Route path='/profile' component={requireAuth(Profile)} />
                         <Route path='/board' component={requireAuth(Board)} />
                         <Route path='/create' component={requireAuth(Create)} />
                         <Route path='/delete' component={requireAuth(Delete)} />
