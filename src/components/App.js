@@ -1,14 +1,15 @@
 import React from 'react'
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import Main from './Main'
 import Login from './login/Login'
 import Delete from './Delete'
 import Delete2 from './Delete2'
 import requireAuth from '../utils/requireAuth'
-import Board from './Board/Board';
-import Create from './Create/Create';
-import Profile from './Profile/Profile';
+import Board from './Board/Board'
+import Create from './Create/Create'
+import Profile from './Profile/Profile'
+import PageNotFound from './common/404'
 
 const App = ({ store }) => {
     return (
@@ -17,11 +18,14 @@ const App = ({ store }) => {
                 <Switch>
                     <Route exact path='/' component={Login} />
                     <Main>
-                        <Route path='/profile' component={requireAuth(Profile)} />
-                        <Route path='/board' component={requireAuth(Board)} />
-                        <Route path='/create' component={requireAuth(Create)} />
-                        <Route path='/delete' component={requireAuth(Delete)} />
-                        <Route path='/delete2' component={requireAuth(Delete2)} />
+                        <Switch>
+                            <Route exact path='/profile' component={requireAuth(Profile)} />
+                            <Route exact path='/board' component={requireAuth(Board)} />
+                            <Route exact path='/create' component={requireAuth(Create)} />
+                            <Route exact path='/delete' component={requireAuth(Delete)} />
+                            <Route exact path='/delete2' component={requireAuth(Delete2)} />
+                            <Route component={requireAuth(PageNotFound)} />
+                        </Switch>
                     </Main>
                 </Switch>
             </BrowserRouter >

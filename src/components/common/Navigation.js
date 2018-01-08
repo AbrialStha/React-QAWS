@@ -23,7 +23,7 @@ class Navigation extends Component {
     }
 
     render() {
-        console.log(this.props.location)
+        // console.log(this.props.location)
         return (
             <nav className="main-menu">
                 <ul>

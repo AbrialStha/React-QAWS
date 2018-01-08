@@ -7,9 +7,7 @@ import { createStore, applyMiddleware, compose } from 'redux'
 import thunk from 'redux-thunk'
 import rootReducers from './reducers/rootReducers'
 import setAuthorizationToken from './utils/setAuthorizationToken'
-import { setCurrentUser, getSessionUser } from './actions/AuthActions'
-import axios from 'axios'
-import config from './config'
+import { setCurrentUser } from './actions/AuthActions'
 
 let store = createStore(
     rootReducers,
