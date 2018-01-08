@@ -253,6 +253,7 @@ table {
     font-weight: bolder;
     margin-bottom: 50px;
 }
+
 .profile_info {
     font-size: 18px;
 }
@@ -288,4 +289,28 @@ table {
 
 .create_task .form-group {
     margin: 25px 10px;
+}
+
+
+/* Spinner */
+
+.loader {
+    margin: 0 auto;
+    border: 16px solid #f3f3f3;
+    /* Light grey */
+    border-top: 16px solid #3498db;
+    /* Blue */
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }

@@ -10,10 +10,10 @@ export function loginRequest(data) {
             const token = res.data.authtoken
             localStorage.setItem('Authorization', token)
             setAuthorizationToken(token)
-            const userObj = res.data.userObj
-            console.log(userObj)
-            localStorage.setItem('user', JSON.stringify(userObj))
-            dispatch(setCurrentUser(userObj))
+            const userId = res.data.userObj
+            console.log(userId)
+            localStorage.setItem('user', JSON.stringify(userId))
+            dispatch(setCurrentUser(userId))
         })
     }
 }

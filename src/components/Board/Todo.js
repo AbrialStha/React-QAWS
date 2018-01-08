@@ -1,15 +1,38 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 import axios from 'axios'
 import config from '../../config'
 
 const Row = (props) => {
-    console.log(this.props.task)
+    function formatDate(date) {
+        const d = new Date(date)
+        const monthNames = [
+            "January", "February", "March",
+            "April", "May", "June", "July",
+            "August", "September", "October",
+            "November", "December"
+        ];
+
+        var day = d.getDate();
+        var monthIndex = d.getMonth();
+        var year = d.getFullYear();
+
+        return day + ' ' + monthNames[monthIndex] + ' ' + year;
+    }
+    console.log(props.task)
+    const { title, due_date, priority, status } = props.task
     return (
         <tr>
-            <td>{this.props.task.title}</td>
-            <td>{this.props.task.title}</td>
-            <td>{this.props.task.priority}</td>
-            <td>{this.props.task.status}</td>
+            <td>{title}</td>
+            <td>{formatDate(due_date)}</td>
+            <td>{priority}</td>
+            <td>
+                {
+                    status != null ? status :
+                        <button className="btn  btn-raised btn-success">Start</button>
+                }
+            </td>
         </tr>
     )
 }
@@ -26,16 +49,15 @@ class Todo extends Component {
     }
 
     componentWillMount() {
-        axios.get(`${config.baseUrl}/task`).then(res => {
+        axios.get(`${config.baseUrl}/tasks/todo/${this.props.userId}`).then(res => {
             if (res.data.status === 'success')
-                this.setState({ tasks: res.data.tasks, loading: false })
+                this.setState({ tasks: res.data.todos, loading: false })
             else
                 this.setState({ loading: true })
         })
     }
 
     render() {
-        const tasks = this.state.tasks
         return (
             <div className="col-5">
                 <div className="card">
@@ -44,31 +66,24 @@ class Todo extends Component {
                             <i className="material-icons">assignment</i>
                         </div>
                         <h4 className="card-title">To Do</h4>
-                        <table className="table">
-                            <thead>
-                                <tr>
-                                    <th>Title</th>
-                                    <th>Due Date</th>
-                                    <th>Priority</th>
-                                    <th>Status</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {
-                                    this.state.loading ? <tr><td>Loading...</td></tr> :
-                                        tasks.map((task, index) => {
-                                            return (
-                                                <tr key={index}>
-                                                    <td>{task.title}</td>
-                                                    <td>{task.due_date}</td>
-                                                    <td>{task.priority}</td>
-                                                    <td>{task.status}</td>
-                                                </tr>
-                                            )
-                                        })
-                                }
-                            </tbody>
-                        </table>
+                        {
+                            this.state.loading ? <div className="loader"></div> :
+                                <table className="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Title</th>
+                                            <th>Due Date</th>
+                                            <th>Priority</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {
+                                            this.state.tasks.map((task) => <Row task={task} key={task._id} />)
+                                        }
+                                    </tbody>
+                                </table>
+                        }
                     </div>
                 </div>
             </div>
@@ -76,4 +91,13 @@ class Todo extends Component {
     }
 }
 
-export default Todo
+Todo.propTypes = {
+    userId: PropTypes.string.isRequired
+}
+
+function mapStateToProps(state) {
+    return {
+        userId: state.auth.user
+    }
+}
+export default connect(mapStateToProps)(Todo)
