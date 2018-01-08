@@ -24,7 +24,7 @@ class LoginForm extends Component {
         this.setState({ isLoading: true })
         this.props.loginRequest(this.state).then(
             (res) => {
-                this.props.history.push('/delete')
+                this.props.history.push('/board')
             },
             (err) => {
                 let data

@@ -8,7 +8,7 @@ import { withRouter } from 'react-router-dom'
 class Login extends Component {
     componentWillMount() {
         if (this.props.isAuthenticated)
-            this.props.history.push('/delete')
+            this.props.history.push('/board')
     }
     render() {
         return (
