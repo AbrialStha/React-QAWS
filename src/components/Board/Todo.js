@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import axios from 'axios'
 import config from '../../config'
+import { fetchTodoTask, removeTaskByID } from '../../actions/TodoActions'
 
 const Row = (props) => {
     function formatDate(date) {
@@ -20,8 +21,8 @@ const Row = (props) => {
 
         return day + ' ' + monthNames[monthIndex] + ' ' + year;
     }
-    console.log(props.task)
-    const { title, due_date, priority, status } = props.task
+    // console.log(props.task)
+    const { _id, title, due_date, priority, status } = props.task
     return (
         <tr>
             <td>{title}</td>
@@ -30,7 +31,7 @@ const Row = (props) => {
             <td>
                 {
                     status != null ? status :
-                        <button className="btn  btn-raised btn-success">Start</button>
+                        <button className="btn  btn-raised btn-success" onClick={() => props.taskStarted(_id)}>Start</button>
                 }
             </td>
         </tr>
@@ -38,26 +39,18 @@ const Row = (props) => {
 }
 
 class Todo extends Component {
-
     constructor(props) {
         super(props)
-        this.state = {
-            loading: true,
-            tasks: {}
-        }
-
+        this.props.fetchTodoTask(this.props.userId)
     }
 
-    componentWillMount() {
-        axios.get(`${config.baseUrl}/tasks/todo/${this.props.userId}`).then(res => {
-            if (res.data.status === 'success')
-                this.setState({ tasks: res.data.todos, loading: false })
-            else
-                this.setState({ loading: true })
-        })
+    taskStarted = (id) => {
+        console.log(id)
+        this.props.removeTaskByID(id)
     }
 
     render() {
+        const { Loading, tasks } = this.props.todo
         return (
             <div className="col-5">
                 <div className="card">
@@ -67,7 +60,7 @@ class Todo extends Component {
                         </div>
                         <h4 className="card-title">To Do</h4>
                         {
-                            this.state.loading ? <div className="loader"></div> :
+                            Loading ? <div className="loader"></div> :
                                 <table className="table">
                                     <thead>
                                         <tr>
@@ -79,7 +72,7 @@ class Todo extends Component {
                                     </thead>
                                     <tbody>
                                         {
-                                            this.state.tasks.map((task) => <Row task={task} key={task._id} />)
+                                            tasks.map((task) => <Row task={task} key={task._id} taskStarted={this.taskStarted} />)
                                         }
                                     </tbody>
                                 </table>
@@ -92,12 +85,15 @@ class Todo extends Component {
 }
 
 Todo.propTypes = {
-    userId: PropTypes.string.isRequired
+    userId: PropTypes.string.isRequired,
+    fetchTodoTask: PropTypes.func.isRequired,
+    removeTaskByID: PropTypes.func.isRequired
 }
 
 function mapStateToProps(state) {
     return {
-        userId: state.auth.user
+        userId: state.auth.user,
+        todo: state.todo
     }
 }
-export default connect(mapStateToProps)(Todo)
+export default connect(mapStateToProps, { fetchTodoTask, removeTaskByID })(Todo)
