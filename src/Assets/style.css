@@ -314,3 +314,24 @@ table {
         transform: rotate(360deg);
     }
 }
+
+
+/* Page not found */
+
+.page_not_found {
+    width: 60%;
+    margin: 20px auto;
+    padding: 40px 20px;
+    background: #f8f8f8;
+}
+.page_not_found h3{
+    font-weight: 400 !important;
+}
+.page_not_found img {
+    margin: 0 auto;
+}
+
+.page_not_found p {
+    font-size: 18px;
+    text-align: center;
+}
