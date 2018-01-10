@@ -1,3 +1,5 @@
 export const SET_CURRENT_USER = 'SET_CURRENT_USER'
 export const SET_TODO = 'SET_TODO'
 export const START_TODO_TASK = 'START_TODO_TASK'
+export const SET_ASSIGNED = 'SET_ASSIGNED'
+

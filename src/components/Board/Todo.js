@@ -3,25 +3,10 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import axios from 'axios'
 import config from '../../config'
+import { formatDate } from '../../utils/helper'
 import { fetchTodoTask, removeTaskByID } from '../../actions/TodoActions'
 
 const Row = (props) => {
-    function formatDate(date) {
-        const d = new Date(date)
-        const monthNames = [
-            "January", "February", "March",
-            "April", "May", "June", "July",
-            "August", "September", "October",
-            "November", "December"
-        ];
-
-        var day = d.getDate();
-        var monthIndex = d.getMonth();
-        var year = d.getFullYear();
-
-        return day + ' ' + monthNames[monthIndex] + ' ' + year;
-    }
-    // console.log(props.task)
     const { _id, title, due_date, priority, status } = props.task
     return (
         <tr>
@@ -50,7 +35,7 @@ class Todo extends Component {
     }
 
     render() {
-        const { Loading, tasks } = this.props.todo
+        const { Loading, tasks, empty } = this.props.todo
         return (
             <div className="col-5">
                 <div className="card">
@@ -72,7 +57,7 @@ class Todo extends Component {
                                     </thead>
                                     <tbody>
                                         {
-                                            tasks.map((task) => <Row task={task} key={task._id} taskStarted={this.taskStarted} />)
+                                            empty ? <tr><td>No Task Found..</td></tr> : tasks.map((task) => <Row task={task} key={task._id} taskStarted={this.taskStarted} />)
                                         }
                                     </tbody>
                                 </table>
