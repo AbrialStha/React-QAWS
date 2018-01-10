@@ -4,7 +4,6 @@ import { Provider } from 'react-redux'
 import Main from './Main'
 import Login from './login/Login'
 import Delete from './Delete'
-import Delete2 from './Delete2'
 import requireAuth from '../utils/requireAuth'
 import Board from './Board/Board'
 import Create from './Create/Create'
@@ -23,7 +22,6 @@ const App = ({ store }) => {
                             <Route exact path='/board' component={requireAuth(Board)} />
                             <Route exact path='/create' component={requireAuth(Create)} />
                             <Route exact path='/delete' component={requireAuth(Delete)} />
-                            <Route exact path='/delete2' component={requireAuth(Delete2)} />
                             <Route component={requireAuth(PageNotFound)} />
                         </Switch>
                     </Main>
