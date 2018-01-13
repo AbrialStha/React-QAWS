@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { withRouter } from 'react-router-dom'
+import Textfield from '../common/Textfield'
 
 class LoginForm extends Component {
     constructor(props) {
@@ -22,7 +23,15 @@ class LoginForm extends Component {
     onSubmit = (event) => {
         event.preventDefault()
         this.setState({ isLoading: true })
-        this.props.loginRequest(this.state).then(
+
+        var properties = Object.getOwnPropertyNames(this.state)
+        let loginData = {}
+        properties.forEach(property => {
+            if (property !== 'isLoading' && property !== 'error')
+                loginData[property] = this.state[property]
+        })
+
+        this.props.loginRequest(loginData).then(
             (res) => {
                 this.props.history.push('/board')
             },
@@ -58,44 +67,37 @@ class LoginForm extends Component {
                     </div>
                 </div>
                 <p className="category text-center">
-                    {this.state.error===''? 'Or Be Classical' : ''}
+                    {this.state.error === '' ? 'Or Be Classical' : ''}
                     <span className="text-danger">{this.state.error}</span>
                 </p>
                 <div className="card-body">
                     <div className="card-content">
                         <div className="align">
                             <i className="material-icons">email</i>
-                            <div className="form-group">
-                                <label className="bmd-label-floating">
-                                    Email address
-                                </label>
-                                <input
-                                    value={username}
-                                    onChange={this.onChange}
-                                    type="email"
-                                    className="form-control"
-                                    name="username"
-                                    required
-                                />
-                                <span className="bmd-help">Enter your fusemachines account</span>
-                            </div>
+                            <Textfield
+                                value={username}
+                                onChange={this.onChange}
+                                id="username"
+                                name="username"
+                                type="email"
+                                label='Email address'
+                                helpText='Enter your fusemachines account'
+                                required="true"
+                            />
                             <div className="clear"></div>
                         </div>
                         <div className="align">
                             <i className="material-icons">lock</i>
-                            <div className="form-group">
-                                <label className="bmd-label-floating">
-                                    Password
-                                </label>
-                                <input
-                                    value={password}
-                                    onChange={this.onChange}
-                                    type="password"
-                                    className="form-control"
-                                    name="password"
-                                />
-                                <span className="bmd-help">Enter your password</span>
-                            </div>
+                            <Textfield
+                                value={password}
+                                onChange={this.onChange}
+                                id="password"
+                                name="password"
+                                type="password"
+                                label='Password'
+                                helpText='Enter your password'
+                                required="true"
+                            />
                             <div className="clear"></div>
                         </div>
                     </div>
