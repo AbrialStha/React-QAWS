@@ -71,7 +71,7 @@ class Assigned extends Component {
 }
 
 Assigned.propTypes = {
-    userId: PropTypes.string.isRequired,
+    // userId: PropTypes.string.isRequired,
     fetchAssignedTask: PropTypes.func.isRequired
 }
 

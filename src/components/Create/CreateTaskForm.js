@@ -40,7 +40,6 @@ class CreateTaskForm extends Component {
             if (ele !== 'isLoading')
                 task[ele] = this.state[ele]
         })
-        // console.log(task)
 
         this.props.createTask(task).then(
             (res) => {

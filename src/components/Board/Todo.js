@@ -68,7 +68,7 @@ class Todo extends Component {
 }
 
 Todo.propTypes = {
-    userId: PropTypes.string.isRequired,
+    // userId: PropTypes.string.isRequired,
     fetchTodoTask: PropTypes.func.isRequired,
     removeTaskByID: PropTypes.func.isRequired
 }
