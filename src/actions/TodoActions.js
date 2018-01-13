@@ -5,7 +5,7 @@ import { SET_TODO, START_TODO_TASK } from './types'
 export function fetchTodoTask(userId) {
     return dispatch => {
         return axios.get(`${config.baseUrl}/tasks/todo/${userId}`).then(res => {
-            if (res.data.status === 'success') {
+            if (res && res.data.status === 'success') {
                 // this.setState({ tasks: res.data.todos, loading: false })
                 dispatch(setTodo(res.data.todos))
             }

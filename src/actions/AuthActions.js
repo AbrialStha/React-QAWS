@@ -7,13 +7,15 @@ import { SET_CURRENT_USER } from './types'
 export function loginRequest(data) {
     return dispatch => {
         return axios.post(`${config.baseUrl}/login`, data).then(res => {
-            const token = res.data.authtoken
-            localStorage.setItem('Authorization', token)
-            setAuthorizationToken(token)
-            const userId = res.data.userObj
-            console.log(userId)
-            localStorage.setItem('user', JSON.stringify(userId))
-            dispatch(setCurrentUser(userId))
+            if (res) {
+                const token = res.data.authtoken
+                localStorage.setItem('Authorization', token)
+                setAuthorizationToken(token)
+                const userId = res.data.userObj
+                console.log(userId)
+                localStorage.setItem('user', JSON.stringify(userId))
+                dispatch(setCurrentUser(userId))
+            }
         })
     }
 }
@@ -21,8 +23,10 @@ export function loginRequest(data) {
 export function getSessionUser() {
     return dispatch => {
         return axios.get(`${config.baseUrl}/session`).then(res => {
-            const userObj = res.data.user
-            dispatch(setCurrentUser(userObj))
+            if (res) {
+                const userObj = res.data.user
+                dispatch(setCurrentUser(userObj))
+            }
         })
     }
 }
@@ -30,11 +34,13 @@ export function getSessionUser() {
 export function logoutRequest() {
     return dispatch => {
         axios.delete(`${config.baseUrl}/logout`).then(res => {
-            localStorage.removeItem('Authorization')
-            localStorage.removeItem('user')
-            setAuthorizationToken(false)
-            dispatch(setCurrentUser({}))
-            console.log(res.data)
+            if (res) {
+                localStorage.removeItem('Authorization')
+                localStorage.removeItem('user')
+                setAuthorizationToken(false)
+                dispatch(setCurrentUser({}))
+                console.log(res.data)
+            }
         })
     }
 }

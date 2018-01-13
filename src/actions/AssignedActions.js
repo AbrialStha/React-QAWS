@@ -5,7 +5,7 @@ import { SET_ASSIGNED, START_ASSIGNED_TASK } from './types'
 export function fetchAssignedTask(userId) {
     return dispatch => {
         return axios.get(`${config.baseUrl}/tasks/assigned/${userId}`).then(res => {
-            if (res.data.status === 'success') {
+            if (res && res.data.status === 'success') {
                 dispatch(setAssigned(res.data.assigned))
             }
         })
