@@ -20,8 +20,8 @@ export function setTodo(tasks) {
     }
 }
 
-export function removeTaskByID(task_id) {
-    console.log('start_task')
+export function removeTodoTaskByID(task_id) {
+    console.log(`${task_id} is started--> go to next page to view`)
     return {
         type: START_TODO_TASK,
         task_id

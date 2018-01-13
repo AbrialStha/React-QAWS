@@ -16,7 +16,7 @@ export default (state = initialState, action = {}) => {
             }
 
         case 'START_TODO_TASK':
-            console.log(state.tasks.length)
+            // console.log(state.tasks.length)
             return {
                 Loading: action.task_id ? false : true,
                 tasks: state.tasks.filter(({ _id }) => _id !== action.task_id),

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { formatDate } from '../../utils/helper'
-import { fetchTodoTask, removeTaskByID } from '../../actions/TodoActions'
+import { fetchTodoTask, removeTodoTaskByID } from '../../actions/TodoActions'
 
 const Row = (props) => {
     const { _id, title, due_date, priority, status } = props.task
@@ -29,7 +29,7 @@ class Todo extends Component {
 
     taskStarted = (id) => {
         console.log(id)
-        this.props.removeTaskByID(id)
+        this.props.removeTodoTaskByID(id)
     }
 
     render() {
@@ -70,7 +70,7 @@ class Todo extends Component {
 Todo.propTypes = {
     // userId: PropTypes.string.isRequired,
     fetchTodoTask: PropTypes.func.isRequired,
-    removeTaskByID: PropTypes.func.isRequired
+    removeTodoTaskByID: PropTypes.func.isRequired
 }
 
 function mapStateToProps(state) {
@@ -79,4 +79,4 @@ function mapStateToProps(state) {
         todo: state.todo
     }
 }
-export default connect(mapStateToProps, { fetchTodoTask, removeTaskByID })(Todo)
+export default connect(mapStateToProps, { fetchTodoTask, removeTodoTaskByID })(Todo)

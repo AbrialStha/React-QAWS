@@ -14,7 +14,15 @@ export default (state = initialState, action = {}) => {
                 tasks: action.tasks,
                 empty: isEmpty(action.tasks)
             }
-
+            
+        case 'START_ASSIGNED_TASK':
+            // console.log(state.tasks.length)
+            return {
+                Loading: action.task_id ? false : true,
+                tasks: state.tasks.filter(({ _id }) => _id !== action.task_id),
+                empty: false
+            }
+            
         default:
             return state
     }

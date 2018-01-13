@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import { fetchAssignedTask } from '../../actions/AssignedActions'
+import { fetchAssignedTask, removeAssignedTaskByID } from '../../actions/AssignedActions'
 import { formatDate } from '../../utils/helper'
 
 const Row = (props) => {
@@ -31,7 +31,7 @@ class Assigned extends Component {
 
     taskStarted = (id) => {
         console.log(id)
-        this.props.removeTaskByID(id)
+        this.props.removeAssignedTaskByID(id)
     }
 
     render() {
@@ -83,4 +83,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps, { fetchAssignedTask })(Assigned)
+export default connect(mapStateToProps, { fetchAssignedTask, removeAssignedTaskByID })(Assigned)

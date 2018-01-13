@@ -21,7 +21,7 @@ const App = ({ store }) => {
                             <Route exact path='/profile' component={requireAuth(Profile)} />
                             <Route exact path='/board' component={requireAuth(Board)} />
                             <Route exact path='/create' component={requireAuth(Create)} />
-                            <Route exact path='/delete' component={requireAuth(Delete)} />
+                            <Route exact path='/task_in_hand' component={requireAuth(Delete)} />
                             <Route component={requireAuth(PageNotFound)} />
                         </Switch>
                     </Main>
