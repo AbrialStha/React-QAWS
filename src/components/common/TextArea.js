@@ -17,13 +17,27 @@ class Textfield extends Component {
     }
 
     render() {
-        const { id, label, helpText } = this.props
+        const { id, name, label, helpText, value, onChange } = this.props
+        const isFocused = this.state.focused ? "is-focused" : ""
+        const isFilled = this.props.value ? "is-filled" : ""
+        const class_name = "form-group bmd-form-group" + " " + isFocused + " " + isFilled
         return (
-            <div className={this.state.focused ? "form-group bmd-form-group is-focused" : "form-group bmd-form-group"}>
+            <div className={class_name} >
                 <label className="bmd-label-floating">{label}</label>
-                <textarea type="text" className="form-control" id={id} onFocus={this.setFocus} onBlur={this.setBlur}></textarea>
+                <textarea
+                    type="text"
+                    className="form-control"
+                    name={name}
+                    id={id}
+                    value={this.props.value}
+                    onFocus={this.setFocus}
+                    onBlur={this.setBlur}
+                    onChange={onChange}
+                    required
+                >
+                </textarea>
                 <span className="bmd-help">{helpText}</span>
-            </div>
+            </ div>
         )
     }
 }
