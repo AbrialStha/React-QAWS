@@ -7,6 +7,11 @@ export function isEmpty(obj) {
     return true;
 }
 
+//To find the Index of array of object by given object id
+export function findIndex(array, obj) {
+    return array.map(x => x.id).indexOf(obj.id)
+}
+
 //Format Date My Style
 export function formatDate(date) {
     const d = new Date(date)
