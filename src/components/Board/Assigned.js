@@ -24,7 +24,7 @@ const Row = (props) => {
 class Assigned extends Component {
     constructor(props) {
         super(props)
-        console.log("from Assigned", this.props.userId)
+        // console.log("from Assigned", this.props.userId)
         this.props.fetchAssignedTask(this.props.userId)
     }
 
@@ -75,7 +75,7 @@ Assigned.propTypes = {
 }
 
 function mapStateToProps(state) {
-    console.log('from assigned', state)
+    // console.log('from assigned', state)
     return {
         userId: state.auth.user,
         assigned: state.assigned
