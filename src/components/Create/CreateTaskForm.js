@@ -35,13 +35,12 @@ class CreateTaskForm extends Component {
         this.setState({ isLoading: true })
 
         var prop = Object.getOwnPropertyNames(this.state)
-
         let task = {}
         prop.forEach(ele => {
             if (ele !== 'isLoading')
                 task[ele] = this.state[ele]
         })
-        console.log(task)
+        // console.log(task)
 
         this.props.createTask(task).then(
             (res) => {
@@ -78,10 +77,12 @@ class CreateTaskForm extends Component {
                 <TextField
                     name="title"
                     id='task_title'
+                    type="text"
                     label='Title'
                     helpText='Enter the title for the task.'
                     value={this.state.title}
                     onChange={this.handleChange}
+                    required="true"
                 />
                 <TextArea
                     name="description"
