@@ -5,11 +5,12 @@ import { fetchAssignedTask } from '../../actions/AssignedActions'
 import { formatDate } from '../../utils/helper'
 
 const Row = (props) => {
-    const { _id, title, due_date, priority, status } = props.task
+    const { _id, title, due_date, reporter, priority, status } = props.task
     return (
         <tr>
             <td>{title}</td>
             <td>{formatDate(due_date)}</td>
+            <td>{reporter.name}</td>
             <td>{priority}</td>
             <td>
                 {
@@ -77,7 +78,7 @@ Assigned.propTypes = {
 function mapStateToProps(state) {
     // console.log('from assigned', state)
     return {
-        userId: state.auth.user,
+        userId: state.auth.user.userId,
         assigned: state.assigned
     }
 }

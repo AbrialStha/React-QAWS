@@ -6,7 +6,7 @@ export function fetchAssignedTask(userId) {
     return dispatch => {
         return axios.get(`${config.baseUrl}/tasks/assigned/${userId}`).then(res => {
             if (res.data.status === 'success') {
-                dispatch(setAssigned(res.data.todos))
+                dispatch(setAssigned(res.data.assigned))
             }
         })
     }

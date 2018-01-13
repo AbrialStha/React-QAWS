@@ -1,11 +1,15 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { createTask } from '../../actions/CreateTaskAction'
+import { addflashMessage } from '../../actions/FlashMessageActions'
 import PropTypes from 'prop-types'
 import TextField from '../common/Textfield'
 import TextArea from '../common/TextArea'
 import RadioButton from './RadioButton'
 import SelectUser from './SelectUser'
 import DatePicker from '../common/DatePicker';
+
+
 class CreateTaskForm extends Component {
     constructor(props) {
         super(props)
@@ -14,7 +18,7 @@ class CreateTaskForm extends Component {
             title: '',
             description: '',
             assiginee: "",
-            reporter: this.props.userID,
+            reporter: this.props.userId,
             priority: 'Minor',
             due_date: ''
         }
@@ -34,25 +38,38 @@ class CreateTaskForm extends Component {
 
         let task = {}
         prop.forEach(ele => {
-            if (ele != 'isLoading')
+            if (ele !== 'isLoading')
                 task[ele] = this.state[ele]
         })
         console.log(task)
-        // this.props.loginRequest(this.state).then(
-        //     (res) => {
-        //         this.props.history.push('/board')
-        //     },
-        //     (err) => {
-        //         let data
-        //         try {
-        //             data = err.response.data
-        //             this.setState({ error: data.msg })
-        //         } catch (error) {
-        //             console.log(error)
-        //         }
-        //         this.setState({ isLoading: false })
-        //     }
-        // )
+
+        this.props.createTask(task).then(
+            (res) => {
+                this.setState({
+                    isLoading: false,
+                    title: '',
+                    description: '',
+                    assiginee: "",
+                    reporter: this.props.userID,
+                    priority: 'Minor',
+                    due_date: ''
+                })
+            },
+            (err) => {
+                let data
+                try {
+                    data = err.response.data
+                    this.props.addflashMessage({
+                        type: "danger",
+                        text: data.err
+                    })
+
+                } catch (error) {
+                    console.log(error)
+                }
+                this.setState({ isLoading: false })
+            }
+        )
     }
     render() {
         const { isLoading } = this.state
@@ -97,9 +114,14 @@ class CreateTaskForm extends Component {
     }
 }
 
+CreateTaskForm.propTypes = {
+    createTask: PropTypes.func.isRequired,
+    addflashMessage: PropTypes.func.isRequired
+}
+
 function mapStateToProps(state) {
     return {
-        userID: state.auth.user
+        userId: state.auth.user.userId
     }
 }
-export default connect(mapStateToProps)(CreateTaskForm)
+export default connect(mapStateToProps, { createTask, addflashMessage })(CreateTaskForm)

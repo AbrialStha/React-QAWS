@@ -21,7 +21,7 @@ class Textfield extends Component {
         const { id, name, label, helpText, onChange } = this.props
         const isFocused = this.state.focused ? "is-focused" : ""
         const isFilled = this.props.value ? "is-filled" : ""
-        const class_name = "form-group bmd-form-group" + " " + isFocused + " " + isFilled
+        const class_name = `form-group bmd-form-group ${isFocused} ${isFilled}`
         return (
             <div className={class_name}>
                 <label className="bmd-label-floating">{label}</label>
@@ -30,6 +30,7 @@ class Textfield extends Component {
                     className="form-control"
                     name={name}
                     id={id}
+                    value={this.props.value}
                     onChange={onChange}
                     onFocus={this.setFocus}
                     onBlur={this.setBlur}

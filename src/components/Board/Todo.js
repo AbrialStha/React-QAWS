@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import axios from 'axios'
-import config from '../../config'
 import { formatDate } from '../../utils/helper'
 import { fetchTodoTask, removeTaskByID } from '../../actions/TodoActions'
 
@@ -77,7 +75,7 @@ Todo.propTypes = {
 
 function mapStateToProps(state) {
     return {
-        userId: state.auth.user,
+        userId: state.auth.user.userId,
         todo: state.todo
     }
 }

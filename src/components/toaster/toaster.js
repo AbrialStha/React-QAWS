@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import style from './toast_style.css'
+import './toast_style.css'
 import { deleteFlashMessage } from '../../actions/FlashMessageActions'
 import Toast from './toast'
 
