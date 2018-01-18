@@ -1,7 +1,7 @@
 import axios from 'axios'
 import config from '../config'
 import setAuthorizationToken from '../utils/setAuthorizationToken'
-import { SET_CURRENT_USER } from './types'
+import { SET_CURRENT_USER, USER_LOGOUT } from './types'
 
 
 export function loginRequest(data) {
@@ -39,6 +39,7 @@ export function logoutRequest() {
                 localStorage.removeItem('user')
                 setAuthorizationToken(false)
                 dispatch(setCurrentUser({}))
+                dispatch(userLogout())
                 console.log(res.data)
             }
         })
@@ -49,5 +50,11 @@ export function setCurrentUser(user) {
     return {
         type: SET_CURRENT_USER,
         user
+    }
+}
+
+export function userLogout() {
+    return {
+        type: USER_LOGOUT
     }
 }

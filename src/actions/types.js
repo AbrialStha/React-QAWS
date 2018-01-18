@@ -1,3 +1,4 @@
+export const USER_LOGOUT = 'USER_LOGOUT'
 export const SET_CURRENT_USER = 'SET_CURRENT_USER'
 
 export const SET_TODO = 'SET_TODO'
