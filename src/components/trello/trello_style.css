@@ -1,0 +1,53 @@
+/* Trello Board */
+
+.trello-board {
+    margin-top:3px !important;
+    background: none !important;
+    margin-top: -20px;
+    height: 95vh !important;
+}
+
+.trello-board>section {
+    width: 60%;
+}
+
+.trello-board>section>header {
+    width:20%;
+    position: fixed;
+    top:9px;
+    z-index:999;
+    margin-left:10%; 
+    transform: translateX(-50%);
+}
+.trello-board>section>header>span.giOmkT{
+    font-size: 1.3rem;
+    text-decoration: underline;
+}
+
+.iQmFR {
+    max-width: 100%;
+}
+
+.board_task:hover {
+    box-shadow: 4px 8px 5px 1px rgba(0, 0, 0, .54);
+}
+
+.board_task>.card-body .card-title::before {
+    position: relative;
+    top: -6px;
+    left: -10px;
+    font-size: 12px;
+    font-family: FontAwesome;
+    content: '\f08d '
+}
+
+.board_task>.card-body .card-title {
+    font-size: 1.3rem;
+}
+
+.board_task>.card-body .card-text {
+    font-size: 1rem;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}

@@ -4,11 +4,13 @@ import { Provider } from 'react-redux'
 import Main from './Main'
 import Login from './login/Login'
 import Delete from './Delete'
+import Trello from './trello/Trello'
 import requireAuth from '../utils/requireAuth'
 import Board from './Board/Board'
 import Create from './Create/Create'
 import Profile from './Profile/Profile'
 import PageNotFound from './common/404'
+// import Home from './App/home';
 
 const App = ({ store }) => {
     return (
@@ -21,7 +23,8 @@ const App = ({ store }) => {
                             <Route exact path='/profile' component={requireAuth(Profile)} />
                             <Route exact path='/board' component={requireAuth(Board)} />
                             <Route exact path='/create' component={requireAuth(Create)} />
-                            <Route exact path='/task_in_hand' component={requireAuth(Delete)} />
+                            <Route exact path='/task_in_hand' component={requireAuth(Trello)} />
+                            <Route exact path='/delete' component={requireAuth(Delete)} />
                             <Route component={requireAuth(PageNotFound)} />
                         </Switch>
                     </Main>

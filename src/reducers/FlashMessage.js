@@ -1,4 +1,4 @@
-import shortid from 'shortid'
+import { generateId } from '../utils/helper'
 import { findIndex } from '../utils/helper'
 import { ADD_FLASH_MESSAGE, DELETE_FLASH_MESSAGE } from '../actions/types'
 
@@ -25,7 +25,7 @@ export default function (state = initialState, action = {}) {
             return [
                 ...state,
                 {
-                    id: shortid.generate(),
+                    id: generateId(),
                     type: action.message.type,
                     text: action.message.text
                 }

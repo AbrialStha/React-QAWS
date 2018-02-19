@@ -38,19 +38,23 @@ class Main extends Component {
         const opensnackbar = this.state.error ? "snackbar-opened" : ""
         return (
             <div>
-                <div id="snackbar-container">
-                    <div class={`snackbar ${opensnackbar}`}>
-                        <span class="snackbar-content">
-                            Session Time Out !
-                            <a href="" onClick={this.redirectToLogin} class="btn btn-info">Click here to login</a>
-                        </span>
-                    </div>
-                </div>
+
                 <div className="area">
                     <Toaster />
                     {this.props.children}
                 </div>
+
                 <Navigation />
+
+                <div id="snackbar-container">
+                    <div className={`snackbar ${opensnackbar}`}>
+                        <span className="snackbar-content">
+                            Session Time Out !
+                            <a href="" onClick={this.redirectToLogin} className="btn btn-info">Click here to login</a>
+                        </span>
+                    </div>
+                </div>
+
             </div>
         )
     }

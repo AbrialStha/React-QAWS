@@ -28,3 +28,9 @@ export function formatDate(date) {
 
     return day + ' ' + monthNames[monthIndex] + ' ' + year;
 }
+
+//Generate unique id for the flashmessage
+export function generateId() {
+    var timestamp = new Date().getUTCMilliseconds();
+    return timestamp;
+}
